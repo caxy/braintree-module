@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains braintree.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function braintree_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the braintree module.
+    case 'help.page.braintree':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function braintree_page_attachments(array &$attachments) {
+  /** @var \Braintree\Gateway $gateway */
+  $gateway = \Drupal::service('braintree.gateway');
+  $attachments['#attached']['drupalSettings']['braintree'] = [
+    'clientToken' => $gateway->clientToken()->generate(),
+  ];
+}

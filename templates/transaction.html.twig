@@ -1,0 +1,118 @@
+{% block message %}
+<section>
+    <p>
+        {% if status %}
+            Your test transaction has been successfully processed. See the Braintree API response and try again.
+        {% else %}
+            Your test transaction has a status of {{ transaction.status }}. See the Braintree API response and try again.
+        {% endif %}
+    </p>
+</section>
+{% endblock %}
+
+{% block transaction %}
+<h2>API Response</h2>
+<table>
+    <caption>Transaction</caption>
+    <tbody>
+    <tr>
+        <td>ID</td>
+        <td>{{ transaction.id }}</td>
+    </tr>
+    <tr>
+        <td>Type</td>
+        <td>{{ transaction.type }}</td>
+    </tr>
+    <tr>
+        <td>Amount</td>
+        <td>{{ transaction.amount }}</td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td>{{ transaction.status }}</td>
+    </tr>
+    <tr>
+        <td>Created</td>
+        <td>{{ transaction.createdAt | date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <td>Updated</td>
+        <td>{{ transaction.updatedAt | date('Y-m-d H:i:s') }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <caption>Payment</caption>
+    <tbody>
+    <tr>
+        <td>Token</td>
+        <td>{{ transaction.creditCardDetails.token }}</td>
+    </tr>
+    <tr>
+        <td>bin</td>
+        <td>{{ transaction.creditCardDetails.bin }}</td>
+    </tr>
+    <tr>
+        <td>Last 4</td>
+        <td>{{ transaction.creditCardDetails.last4 }}</td>
+    </tr>
+    <tr>
+        <td>Card type</td>
+        <td>{{ transaction.creditCardDetails.cardType }}</td>
+    </tr>
+    <tr>
+        <td>Expiration date</td>
+        <td>{{ transaction.creditCardDetails.expirationDate }}</td>
+    </tr>
+    <tr>
+        <td>Cardholder name</td>
+        <td>{{ transaction.creditCardDetails.cardholderName }}</td>
+    </tr>
+    <tr>
+        <td>Customer location</td>
+        <td>{{ transaction.creditCardDetails.customerLocation }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% if transaction.customerDetails.id is not defined %}
+    <table>
+        <caption>Customer Details</caption>
+        <tbody>
+        <tr>
+            <td>id</td>
+            <td>{{ transaction.customerDetails.id }}</td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td>{{ transaction.customerDetails.firstName }}</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>{{ transaction.customerDetails.lastName }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ transaction.customerDetails.email }}</td>
+        </tr>
+        <tr>
+            <td>Company</td>
+            <td>{{ transaction.customerDetails.company }}</td>
+        </tr>
+        <tr>
+            <td>Website</td>
+            <td>{{ transaction.customerDetails.website }}</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>{{ transaction.customerDetails.phone }}</td>
+        </tr>
+        <tr>
+            <td>Fax</td>
+            <td>{{ transaction.customerDetails.fax }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

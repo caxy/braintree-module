@@ -1,0 +1,14 @@
+braintree-web:
+  js:
+    bower_components/braintree-web/dist/braintree.js: { }
+
+card-validator:
+  js:
+    bower_components/card-validator/dist/card-validator.min.js: { }
+
+braintree:
+  js:
+    js/braintree.js: {}
+  dependencies:
+    - braintree/braintree-web
+    - braintree/card-validator

@@ -1,0 +1,22 @@
+{
+  "name": "braintree",
+  "homepage": "https://github.com/caxy/communityfirst",
+  "authors": [
+    "Benjamin Doherty <bjd@bangpound.org>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "braintree-web": "^2.27.0",
+    "card-validator": "braintree/card-validator#^2.3.0"
+  }
+}

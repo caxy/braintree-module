@@ -1,0 +1,15 @@
+braintree.test_form:
+  path: '/braintree'
+  defaults:
+    _form: '\Drupal\braintree\Form\DefaultForm'
+    _title: 'Form'
+  requirements:
+    _permission: 'TRUE'
+
+braintree.transaction.result:
+  path: '/transaction/{id}'
+  defaults:
+    _controller: '\Drupal\braintree\Controller\TransactionController::result'
+    _title_callback: '\Drupal\braintree\Controller\TransactionController:resultTitle'
+  requirements:
+    _permission: 'access content'

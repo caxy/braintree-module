@@ -1,0 +1,32 @@
+parameters:
+  braintree_environment: ~
+  braintree_merchant_id: ~
+  braintree_public_key: ~
+  braintree_private_key: ~
+
+services:
+  braintree.configuration:
+    class: Braintree\Configuration
+    arguments:
+      -
+        environment: %braintree_environment%
+        merchantId: %braintree_merchant_id%
+        publicKey: %braintree_public_key%
+        privateKey: %braintree_private_key%
+
+  braintree.gateway:
+    class: Braintree\Gateway
+    arguments: ['@braintree.configuration']
+
+  braintree.client_token:
+    class: Braintree\ClientTokenGateway
+    factory: ['braintree.gateway', 'clientToken']
+
+  braintree.gateway.transaction:
+    class: Braintree\TransactionGateway
+    arguments: ['@braintree.gateway']
+
+  braintree.key_value:
+    class: Drupal\Core\KeyValueStore\KeyValueStoreInterface
+    factory: ['@keyvalue.expirable', 'get']
+    arguments: ['braintree']

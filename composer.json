@@ -1,0 +1,7 @@
+{
+  "name": "drupal/braintree",
+  "type": "drupal-module",
+  "require": {
+    "braintree/braintree_php": "^3.6"
+  }
+}
